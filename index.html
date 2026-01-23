@@ -17,19 +17,23 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            color: white;
         }
         .header{
             margin: 10px;
             padding: 5px 10px 5px 10px;
-            background-color: rgba(255, 255, 255, 0.7);
+            background-color: rgba(53, 51, 51, 0.363);
             border-radius: 5px;
             text-align: center;
             width: fit-content;
+            font-size: 40px;
+            border: black solid 1px;
+            font-size: 50px;
         }
         .element {
             margin: 10px;
             padding: 5px 10px 5px 10px;
-            background-color: rgba(255, 255, 255, 0.7);
+            background-color: rgba(53, 51, 51, 0.363);
             border-radius: 5px;
             text-align: center;
             width: fit-content;
@@ -39,12 +43,79 @@
             flex-direction: column;
             align-items: center;
         }
+        .box {
+            margin: 10px;
+            padding: 5px 10px 5px 10px;
+            background-color: rgba(53, 51, 51, 0.363);
+            border-radius: 10px;
+            text-align: center;
+            width: fit-content;
+            border: black solid 1px;
+        }
+        p h2{
+            margin: 0;
+            padding: 0;
+        }
+        .horiz {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+        .clickable {
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
     </style>
 </head>
 <body>
-    <div class="c">
-        <h1 class="header">Hi im dinotnt_</h1>
-        <p class="element">my dad smells really bad</p>
-        <p class="element">my friend evan does too</p>
+    <div class="centered">
+        <div class="c">
+            <h1 class="header move">Hi im dinotnt_</h1>
+            <div class="box move">
+                <h2 style="margin: 0;">here are some things ive made:</h2>
+            </div>
+            <div class="horiz move">
+                <p class="element clickable"><a href="http://mcsrintros.dinotnt.com">mcsrintros</a></p>
+                <p class="element clickable"><a href="http://revisionmaps.dinotnt.com">Revision Maps</a></p>
+                <p class="element clickable"><a href="http://tttr.dinotnt.com">Tic Tac Toe Ranked</a></p>
+            </div>
+            <div class="box move">
+                <h2 style="margin: 0;">im also on:</h2>
+            </div>
+            <div class="horiz move">
+                <p class="element clickable"><a href="https://github.com/dinotnt-lab">github</a></p>
+                <p class="element clickable"><a onclick="alert('urls dont work for discord silly. add me -> dinotnt')">discord</a></p>
+                <p class="element clickable"><a onclick="alert('i bet you fell for the discord one too -> rooc08964@gmail.com')">email</a></p>
+        </div>
     </div>
+</body>
+<script>
+document.addEventListener("mousemove", (event) => {
+    const elements = document.querySelectorAll(".move");
+
+    elements.forEach(el => {
+        const rect = el.getBoundingClientRect();
+
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+
+        const deltaX = centerX - event.clientX;
+        const deltaY = centerY - event.clientY;
+
+        const translateX = deltaX / 40 * -1
+        const translateY = deltaY / 40 * -1
+        const rotate = deltaX / 80 * -1
+
+        el.style.transition = "transform 0.1s";
+        el.style.transform = `translate(${translateX}px, ${translateY}px) rotate(${rotate}deg)`;
+    });
+});
+</script>
+
+
 </html>
