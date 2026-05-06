@@ -95,10 +95,18 @@
             </div>
             <div class="horiz move">
                 <p class="element clickable"><a href="https://github.com/dinotnt-lab" target="_blank">github</a></p>
-                <p class="element clickable"><a onclick="alert('urls dont work for discord silly. add me -> dinotnt')">discord</a></p>
-                <p class="element clickable"><a onclick="alert('i bet you fell for the discord one too -> rooc08964@gmail.com')">email</a></p>
-               <p class="element clickable"><a href="https://youtube.com/@dinotnt" target="_blank">youtube</a></p>
-               <p class="element clickable"><a href="twitch.tv/dinotnt_" target="_blank">twitch</a></p>
+                <p class="element clickable"><a href="https://discord.com/users/934411864123797574" target="_blank">discord</a></p>
+                <p class="element clickable"><a href="https://youtube.com/@dinotnt" target="_blank">youtube</a></p>
+                <p class="element clickable"><a href="https://twitch.tv/dinotnt_" target="_blank">twitch</a></p>
+            </div>
+            <div class="box move">
+                <h2 style="margin:0;" class="clickable"><a href="https://mcsrranked.com/stats/dinotnt_" target="_blank">MCSR Ranked</a></h2>
+            </div>
+            <div class="horiz move">
+                <p id="elo" class="element">Elo: load</p>
+                <p id="lbpos" class="element">Rank: load</p>
+                <p id="pb" class="element">PB: loading</p>
+            </div>
         </div>
     </div>
 </body>
@@ -115,15 +123,38 @@ document.addEventListener("mousemove", (event) => {
         const deltaX = centerX - event.clientX;
         const deltaY = centerY - event.clientY;
 
-        const translateX = deltaX / 40 * -1
-        const translateY = deltaY / 40 * -1
+        const translateX = deltaX / 80 * -1
+        const translateY = deltaY / 80 * -1
         const rotate = deltaX / 80 * -1
 
         el.style.transition = "transform 0.1s";
         el.style.transform = `translate(${translateX}px, ${translateY}px) rotate(${rotate}deg)`;
     });
 });
+
+function formatTime(ms) {
+    const minutes = Math.floor(ms / 60000);
+    const seconds = Math.floor((ms % 60000) / 1000);
+    const milliseconds = ms % 1000;
+
+    return `${String(minutes).padStart(2, '0')}:` +
+           `${String(seconds).padStart(2, '0')}.` +
+           `${String(milliseconds).padStart(3, '0')}`;
+}
+
+async function getmcsrrankedstuff() {
+    const res = await fetch('https://api.mcsrranked.com/users/dinotnt_');
+    const data = await res.json();
+    console.log(data)
+
+    const elo = document.getElementById('elo');
+    elo.innerText = 'Elo: ' + data.data.eloRate;
+    const lbpos = document.getElementById('lbpos');
+    lbpos.innerText = 'Rank: ' + data.data.eloRank;
+    const pb = document.getElementById('pb');
+    pb.innerText = 'pb: ' + formatTime(data.data.statistics.total.bestTime.ranked);
+}
+
+getmcsrrankedstuff();
 </script>
-
-
 </html>
