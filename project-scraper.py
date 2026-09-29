@@ -3,7 +3,6 @@ import msvcrt
 import colorama
 import os
 import json
-import time
 
 colorama.init()
 
