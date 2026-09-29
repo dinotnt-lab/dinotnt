@@ -1,0 +1,24 @@
+{
+	"shown": [
+		{ "title": "printVerse", "link": "https://printverse-one.vercel.app/" },
+		{ "title": "Tic Tac Toe Ranked", "link": "http://tttr.dinotnt.com/" },
+		{
+			"title": "MCSR VOD Review",
+			"link": "https://vod-review.dinotnt.com/"
+		},
+		{ "title": "mcsr tree", "file": "https://mcsr-tree.dinotnt.com" }
+	],
+	"hidden": [
+		{ "title": "MCSR Toolbox", "link": "http://mcsr-toolbox.dinotnt.com/" },
+		{
+			"title": "Revision Maps",
+			"link": "https://revisionmaps.dinotnt.com/"
+		},
+		{ "title": "mcsrintros", "link": "http://mcsrintros.dinotnt.com/" },
+		{ "title": "Polymer-der", "link": "http://polymer-der.dinotnt.com/" },
+		{
+			"title": "MCRL Seed Tool",
+			"link": "https://mcrl-seed-tool.dinotnt.com/"
+		}
+	]
+}

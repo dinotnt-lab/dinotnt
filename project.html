@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>project · dinotnt_</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="/style.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&amp;family=Syne:wght@400;700;800&amp;display=swap"
+            rel="stylesheet"
+        />
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    </head>
+
+    <body>
+        <div id="header" class="project-header">
+            <a href="/" aria-label="dinotnt home"><span>dino</span><span>tnt</span>_</a>
+        </div>
+        <div id="con"></div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", async function() {
+                const params = new URLSearchParams(document.location.search);
+                const file = params.get("f");
+
+                if (!file) {
+                    window.location.href = "/";
+                    return;
+                }
+
+                const raw = await fetch(file);
+                const data = await raw.text();
+
+                const con = document.getElementById("con");
+
+                con.innerHTML = marked.parse(data);
+
+                const gap = 10
+                var x = 0
+                var f = true
+                while (true) {
+                    if (f) {
+                        x += 1;
+                    } else {
+                        x -= 1;
+                    }
+                    if (x >= 100) {
+                        f = false;
+                    }
+                    if (x <= 0) {
+                        f = true;
+                    }
+                    document.documentElement.style.setProperty('--bg-one', `${x}%`);
+                    document.documentElement.style.setProperty('--bg-two', `${x + gap}%`);
+                    await new Promise(resolve => setTimeout(resolve, 50));
+                }
+            });
+        </script>
+    </body>
+</html>
