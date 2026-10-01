@@ -28,6 +28,17 @@ html, body {
     --ms-user-select: none;
 }
 
+html.project-document {
+    background-attachment: fixed;
+}
+
+body.project-page {
+    height: auto;
+    min-height: 100vh;
+    background-color: transparent;
+    background-image: none;
+}
+
 #header h1 {
     margin: 0;
     font-family: "Syne", sans-serif;
@@ -308,7 +319,7 @@ html, body {
 #con h4,
 #con h5,
 #con h6 {
-    color: var(--light-accent-color);
+    color: var(--accent-color);
     font-family: "Syne", sans-serif;
     line-height: 1.2;
     margin: 1.5em 0 0.6em;
@@ -323,12 +334,6 @@ html, body {
 #con h2 {
     padding-bottom: 8px;
     border-bottom: 1px solid var(--border-color);
-}
-
-#con p,
-#con ul,
-#con ol {
-    color: var(--muted-color);
 }
 
 #con a {
@@ -372,4 +377,8 @@ html, body {
 #con img {
     max-width: 100%;
     height: auto;
+}
+
+#con li::marker {
+    color: var(--accent-color);
 }
