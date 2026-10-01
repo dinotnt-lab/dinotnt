@@ -1,13 +1,53 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", async function() {
     const projectsContainer = document.getElementById("projects");
     const hiddenProjectsContainer = document.getElementById("hidden-projects");
     const projectsData = "projects.json";
+    const fitProjectTitle = projectElement => {
+        const title = projectElement.querySelector("h2");
+        const baseFontSize = Number(title.dataset.baseFontSize || parseFloat(getComputedStyle(title).fontSize));
 
-    hiddenProjectsContainer.addEventListener("transitionend", event => {
-        if (event.propertyName === "height" && hiddenProjectsContainer.classList.contains("is-open")) {
-            hiddenProjectsContainer.style.height = "auto";
+        title.dataset.baseFontSize = baseFontSize;
+        title.style.fontSize = `${baseFontSize}px`;
+
+        const availableWidth = title.clientWidth;
+        const textWidth = title.scrollWidth;
+
+        if (availableWidth > 0 && textWidth > availableWidth) {
+            title.style.fontSize = `${baseFontSize * availableWidth / textWidth * 0.98}px`;
         }
+    };
+    const titleResizeObserver = new ResizeObserver(entries => {
+        entries.forEach(({ target }) => fitProjectTitle(target));
     });
+    const addReadmeButton = (projectElement, repo, openCard) => {
+        const readmeUrl = `https://raw.githubusercontent.com/${repo}/main/README.md`;
+
+        fetch(readmeUrl, { method: "HEAD" })
+            .then(response => {
+                if (!response.ok) {
+                    console.error(`Failed to fetch README for ${repo}: ${response.status}`);
+                    return;
+                }
+
+                const bookbutton = document.createElement("button");
+                bookbutton.classList.add("bookbutton");
+                bookbutton.textContent = "🕮";
+                bookbutton.addEventListener("click", event => {
+                    event.stopPropagation();
+                    window.open('/project.html?f=' + readmeUrl + '&from-main=true');
+                });
+                projectElement.appendChild(bookbutton);
+
+                if (openCard) {
+                    projectElement.addEventListener("click", () => {
+                        window.open('/project.html?f=' + readmeUrl + '&from-main=true');
+                    });
+                }
+
+                fitProjectTitle(projectElement);
+            })
+            .catch(error => console.error(`Failed to check README for ${repo}`, error));
+    };
 
     fetch(projectsData)
         .then(response => response.json())
@@ -20,21 +60,31 @@ document.addEventListener("DOMContentLoaded", function() {
                 title.textContent = project.title;
                 projectElement.appendChild(title);
 
-                const arrow = document.createElement("p");
-                arrow.classList.add("arrow");
-                if (project.link == undefined) {
-                    arrow.textContent = "🕮";
-                    projectElement.addEventListener("click", () => {
-                        window.open('/project.html?f=' + project.file + '&from-main=true')
-                    });
+                if (project.link == false) {
+                    const match = project.github.match(/github\.com\/([^/]+\/[^/?#]+)/);
+
+                    if (match) {
+                        addReadmeButton(projectElement, match[1], true);
+                    }
                 } else {
+                    const arrow = document.createElement("p");
+                    arrow.classList.add("arrow");
+
                     arrow.textContent = "↗";
                     projectElement.addEventListener("click", () => {
                         window.open(project.link)
                     });
+                    projectElement.appendChild(arrow);
+
+                    const match = project.github.match(/github\.com\/([^/]+\/[^/?#]+)/);
+
+                    if (match) {
+                        addReadmeButton(projectElement, match[1], false);
+                    }
+                    
                 }
 
-                projectElement.appendChild(arrow);
+                titleResizeObserver.observe(projectElement);
                 return projectElement;
             }
 
@@ -43,6 +93,10 @@ document.addEventListener("DOMContentLoaded", function() {
             });
             projects['hidden'].forEach(project => {
                 hiddenProjectsContainer.appendChild(createProjectElement(project));
+            });
+
+            document.fonts.ready.then(() => {
+                document.querySelectorAll(".project").forEach(fitProjectTitle);
             });
         });
 });

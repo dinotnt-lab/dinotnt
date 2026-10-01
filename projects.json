@@ -1,25 +1,56 @@
 {
 	"shown": [
-		{ "title": "printVerse", "link": "https://printverse-one.vercel.app/" },
-		{ "title": "Tic Tac Toe Ranked", "link": "http://tttr.dinotnt.com/" },
+		{
+			"title": "printVerse",
+			"link": "https://printverse-one.vercel.app/",
+			"github": "https://github.com/dinotnt-lab/printVerse"
+		},
+		{
+			"title": "Tic Tac Toe Ranked",
+			"link": "http://tttr.dinotnt.com/",
+			"github": "https://github.com/dinotnt-lab/Tic-Tac-Toe-Ranked"
+		},
 		{
 			"title": "MCSR VOD Review",
-			"link": "https://vod-review.dinotnt.com/"
+			"link": "https://vod-review.dinotnt.com/",
+			"github": "https://github.com/dinotnt-lab/vod-review"
 		},
-		{ "title": "mcsr tree", "link": "https://mcsr-tree.dinotnt.com" },
-		{ "title": "hand mouse", "file": "https://raw.githubusercontent.com/dinotnt-lab/handMouse/refs/heads/main/README.md" }
+		{
+			"title": "mcsr tree",
+			"link": "https://mcsr-tree.dinotnt.com",
+			"github": "https://github.com/dinotnt-lab/mcsrgraph"
+		},
+		{
+			"title": "hand mouse",
+			"link": false,
+			"github": "https://github.com/dinotnt-lab/handMouse"
+		}
 	],
 	"hidden": [
-		{ "title": "MCSR Toolbox", "link": "http://mcsr-toolbox.dinotnt.com/" },
+		{
+			"title": "MCSR Toolbox",
+			"link": "http://mcsr-toolbox.dinotnt.com/",
+			"github": "https://github.com/dinotnt-lab/MCSR-Toolbox"
+		},
 		{
 			"title": "Revision Maps",
-			"link": "https://revisionmaps.dinotnt.com/"
+			"link": "https://revisionmaps.dinotnt.com/",
+			"github": "https://github.com/dinotnt-lab/RevisionMaps"
 		},
-		{ "title": "mcsrintros", "link": "http://mcsrintros.dinotnt.com/" },
-		{ "title": "Polymer-der", "link": "http://polymer-der.dinotnt.com/" },
+		{
+			"title": "mcsrintros",
+			"link": "http://mcsrintros.dinotnt.com/",
+			"github": "https://github.com/dinotnt-lab/mcsrintros"
+		},
+		{
+			"title": "Polymer-der",
+			"link": "http://polymer-der.dinotnt.com/",
+			"github": "https://github.com/dinotnt-lab/Polymer-der"
+		},
 		{
 			"title": "MCRL Seed Tool",
-			"link": "https://mcrl-seed-tool.dinotnt.com/"
+			"link": "https://mcrl-seed-tool.dinotnt.com/",
+			"github": "https://github.com/dinotnt-lab/MCRL-Seed-Tool"
 		}
 	]
 }
