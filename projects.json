@@ -6,7 +6,8 @@
 			"title": "MCSR VOD Review",
 			"link": "https://vod-review.dinotnt.com/"
 		},
-		{ "title": "mcsr tree", "file": "https://mcsr-tree.dinotnt.com" }
+		{ "title": "mcsr tree", "link": "https://mcsr-tree.dinotnt.com" },
+		{ "title": "hand mouse", "file": "https://raw.githubusercontent.com/dinotnt-lab/handMouse/refs/heads/main/README.md" }
 	],
 	"hidden": [
 		{ "title": "MCSR Toolbox", "link": "http://mcsr-toolbox.dinotnt.com/" },

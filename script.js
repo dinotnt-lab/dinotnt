@@ -25,12 +25,12 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (project.link == undefined) {
                     arrow.textContent = "🕮";
                     projectElement.addEventListener("click", () => {
-                        window.location.href = '/project.html?f=' + project.file;
+                        window.open('/project.html?f=' + project.file + '&from-main=true')
                     });
                 } else {
                     arrow.textContent = "↗";
                     projectElement.addEventListener("click", () => {
-                        window.location.href = project.link;
+                        window.open(project.link)
                     });
                 }
 

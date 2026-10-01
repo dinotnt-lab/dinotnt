@@ -16,11 +16,20 @@
 
     <body>
         <div id="header" class="project-header">
-            <a href="/" aria-label="dinotnt home"><span>dino</span><span>tnt</span>_</a>
+            <a onclick="home()" aria-label="dinotnt home"><span>dino</span><span>tnt</span>_</a>
         </div>
         <div id="con"></div>
-
         <script>
+            function home() {
+                if (!fromMain) {
+                    window.location.href = "/";
+                } else {
+                    window.close();
+                }
+            }
+
+            const fromMain = new URLSearchParams(document.location.search).get("from-main");
+
             document.addEventListener("DOMContentLoaded", async function() {
                 const params = new URLSearchParams(document.location.search);
                 const file = params.get("f");
@@ -29,6 +38,8 @@
                     window.location.href = "/";
                     return;
                 }
+
+                history.replaceState({}, "", "/project.html?f=" + file);
 
                 const raw = await fetch(file);
                 const data = await raw.text();
