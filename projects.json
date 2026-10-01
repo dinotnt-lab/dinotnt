@@ -21,9 +21,9 @@
 			"github": "https://github.com/dinotnt-lab/mcsrgraph"
 		},
 		{
-			"title": "hand mouse",
+			"title": "robot arm",
 			"link": false,
-			"github": "https://github.com/dinotnt-lab/handMouse"
+			"github": "https://github.com/dinotnt-lab/robot-arm"
 		}
 	],
 	"hidden": [
@@ -51,6 +51,11 @@
 			"title": "MCRL Seed Tool",
 			"link": "https://mcrl-seed-tool.dinotnt.com/",
 			"github": "https://github.com/dinotnt-lab/MCRL-Seed-Tool"
+		},
+		{
+			"title": "hand mouse",
+			"link": false,
+			"github": "https://github.com/dinotnt-lab/handMouse"
 		}
 	]
 }
