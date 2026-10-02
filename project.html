@@ -8,7 +8,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&amp;family=Syne:wght@400;700;800&amp;display=swap"
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap"
             rel="stylesheet"
         />
         <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -16,9 +16,13 @@
 
     <body class="project-page">
         <div id="header" class="project-header">
-            <a onclick="home()" aria-label="dinotnt home"><span>dino</span><span>tnt</span>_</a>
+            <a onclick="home()" aria-label="dinotnt home">
+                <span>dino</span><span>tnt</span>_
+            </a>
         </div>
+
         <div id="con"></div>
+
         <script>
             function home() {
                 if (!fromMain) {
@@ -39,7 +43,7 @@
                     return;
                 }
 
-                history.replaceState({}, "", "/project.html?f=" + file);
+                history.replaceState({}, "", "/project.html?f=" + encodeURIComponent(file));
 
                 const raw = await fetch(file);
                 const data = await raw.text();
@@ -48,23 +52,34 @@
 
                 con.innerHTML = marked.parse(data);
 
-                const gap = 10
-                var x = 0
-                var f = true
+                con.querySelectorAll("img").forEach(image => {
+                    image.onclick = () => {
+                        window.open(image.src);
+                    };
+                });
+
+                const gap = 10;
+                let x = 0;
+                let f = true;
+
                 while (true) {
                     if (f) {
                         x += 1;
                     } else {
                         x -= 1;
                     }
+
                     if (x >= 100) {
                         f = false;
                     }
+
                     if (x <= 0) {
                         f = true;
                     }
-                    document.documentElement.style.setProperty('--bg-one', `${x}%`);
-                    document.documentElement.style.setProperty('--bg-two', `${x + gap}%`);
+
+                    document.documentElement.style.setProperty("--bg-one", `${x}%`);
+                    document.documentElement.style.setProperty("--bg-two", `${x + gap}%`);
+
                     await new Promise(resolve => setTimeout(resolve, 50));
                 }
             });
